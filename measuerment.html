@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>search</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="stylee.css">
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="index.html" class="logo">Back to home</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search our services..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+         </div>
+      </div>
+
+   </section>
+
+</header>   
+
+   </div>
+
+  
+   <html>
+    <head>
+      <meta charset="utf-8" />
+      <title>GIS Web Development - Measurement 2D</title>
+      <style>
+        html,
+        body {
+          padding: 0;
+          margin: 0;
+          height: 100%;
+        }
+      </style>
+  
+      <link
+        rel="stylesheet"
+        href="https://js.arcgis.com/4.15/esri/themes/dark/main.css"
+      />
+      <script src="https://js.arcgis.com/4.15/"></script>
+  
+      <script>
+        let view, measurement;
+        require(["esri/Map", "esri/views/MapView", "esri/widgets/Measurement"], (
+          Map,
+          MapView,
+          Measurement
+        ) => {
+          view = new MapView({
+            
+            id: "view",
+            container: "viewDiv",
+            
+            map: new Map({
+              basemap: "satellite",
+              center: [30.5, 27.8],
+            }),
+            zoom: 3,
+            
+          });
+  
+          measurement = new Measurement({ view: view, activeTool: "area" });
+  
+          view.ui.add(measurement, "top-right");
+        });
+      </script>
+    </head>
+    <body>
+      <div id="viewDiv" style="width: 2000px; height: 2000px"></div>
+    </body>
+  </html>
+</div>
+<footer class="footer">
+
+  &copy; copyright @ 2024 by <span>Ammar Mohamed Abdallah</span> | all rights reserved!
+
+</footer>
+<!-- custom js file link  -->
+<script src="src.js"></script>
+
+  
+</body>
+</html>

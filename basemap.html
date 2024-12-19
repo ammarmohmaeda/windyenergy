@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>base map </title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="stylee.css">
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="index.html" class="logo">Back o home</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search our services..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+    
+      </div>
+
+
+
+      
+   </section>
+
+</header>   
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>BasemapGallery widget | Sample | ArcGIS Maps SDK for JavaScript 4.30</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css" />
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <script src="https://js.arcgis.com/4.30/"></script>
+    <script>
+      require(["esri/Map", "esri/Basemap", "esri/views/SceneView", "esri/widgets/BasemapGallery"],
+      (
+        Map,
+        Basemap,
+        SceneView,
+        BasemapGallery
+      ) => {
+        const map = new Map({
+          basemap: new Basemap({
+            portalItem: {
+              id: "0560e29930dc4d5ebeb58c635c0909c9" // References the 3D Topographic Basemap
+            }
+          })
+        });
+
+        const view = new SceneView({
+          container: "viewDiv",
+          map: map,
+          camera: {
+            position: {
+              longitude: 30.5,
+              latitude: 27.8,
+              z: 1620.71497
+            },
+            heading: 57.02,
+            tilt: 56.97
+          } // Manhattan, NY
+        });
+
+        const basemapGallery = new BasemapGallery({
+          view: view
+        });
+
+        // Add the widget to the top-right corner of the view
+        view.ui.add(basemapGallery, {
+          position: "top-right"
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
+
+
+</div>
+
+
+
+
+
+
+<footer class="footer">
+
+  &copy; copyright @ 2024 by <span>Ammar Mohamed Abdallah</span> | all rights reserved!
+
+</footer>
+<!-- custom js file link  -->
+<script src="src.js"></script>
+
+  
+</body>
+</html>

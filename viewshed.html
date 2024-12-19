@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>wmts</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="stylee.css">
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="index.htmll" class="logo">back to home</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search our services..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+    
+      </div>
+
+   </section>
+
+</header>   
+
+
+
+</div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.31/esri/themes/light/main.css" />
+    <title>wmts</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 95%; /* allow space for sublayer switcher */
+        width: 100%;
+      }
+
+      #selectDiv {
+        background-color: lightgrey;
+        padding: 10px;
+      }
+
+      #theLabel {
+        visibility: hidden; /* hide until populated */
+      }
+
+      .esri-layer-list {
+        width: 310px;
+      }
+    </style>
+
+    <script src="https://js.arcgis.com/4.31/"></script>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/Viewpoint",
+        "esri/geometry/Extent",
+        "esri/views/MapView",
+        "esri/layers/WMTSLayer",
+        "esri/widgets/LayerList"
+      ], (Map, Viewpoint, Extent, MapView, WMTSLayer, LayerList) => {
+        const layer = new WMTSLayer({
+          url: "https://gibs.earthdata.nasa.gov/wmts/epsg4326/best",
+          copyright: "<a href='https://earthdata.nasa.gov'>Earthdata</a> by NASA",
+          activeLayer: {
+            id: "SRTM_Color_Index"
+          }
+        });
+
+        const map = new Map({
+          layers: [layer]
+        });
+
+        const view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [16.463814503649008, 48.13488142774444],
+          scale: 144201449.5083617
+        });
+        view.when(() => {
+          layerList = new LayerList({
+            view: view
+          });
+          view.ui.add(layerList, "bottom-left");
+
+          layer.when(() => {
+            // add all sublayers to the select element
+            layer.sublayers.forEach((sublayer, i) => {
+              selectSublayer.options[selectSublayer.options.length] = new Option(
+                "(" + i + ") " + sublayer.title,
+                sublayer.id
+              );
+            });
+
+            // once populated, show the select element
+            const theDiv = document.getElementById("theLabel");
+            theDiv.style.visibility = "visible";
+          }); // end layer.load function
+        });
+
+        // if sublayer is changed, recreate map, view, and widgets using new activeLayer
+        document.getElementById("selectSublayer").onchange = (event) => {
+          layer.activeLayer = layer.findSublayerById(event.target.value).clone();
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <div id="selectDiv" class="esri-widget">
+      <label id="theLabel">
+        Pick a layer from the WMTS catalog
+        <select id="selectSublayer"></select>
+      </label>
+    </div>
+    <div id="viewDiv"></div>
+  </body>
+</html>
+
+
+
+<footer class="footer">
+
+  &copy; copyright @ 2024 by <span>Ammar Mohamed Abdallah</span> | all rights reserved!
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="src.js"></script>
+
+  
+</body>
+</html>
